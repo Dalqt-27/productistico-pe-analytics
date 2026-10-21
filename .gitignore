@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+# Local configuration, secrets, editor
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+.vscode/
+.idea/
+# Original source tables Tabla1.csv / Tabla2.xlsx are intentionally tracked
+# Exports from earlier local versions
+datos_exportados.csv
+datos_exportados.xlsx

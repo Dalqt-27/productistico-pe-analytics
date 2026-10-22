@@ -1,36 +1,80 @@
-# ProductísticoPE | Analítica agrícola en Python
+# ProductísticoPE — Análisis de producción agrícola en Perú
 
-Aplicación académica desarrollada en equipo para explorar datos agrícolas mediante **Streamlit, pandas, matplotlib y scikit-learn**. Permite analizar tablas CSV/Excel, visualizar producción por año y región, calcular estadísticos y ajustar una regresión lineal simple exploratoria.
+**ProductísticoPE** es una aplicación web académica desarrollada en equipo con **Python y Streamlit** para explorar archivos agrícolas CSV/Excel, consultar indicadores descriptivos y visualizar relaciones entre producción, cultivos, regiones y años.
 
-## Ejecutar en Windows
+> **Alcance de los datos:** `Tabla1.csv` y `Tabla2.xlsx` son los archivos utilizados en el trabajo académico. Su origen, unidades y correspondencia con estadísticas oficiales del INEI **no se han verificado**. No deben citarse como series oficiales. La regresión lineal implementada es **exploratoria**, no un pronóstico validado.
 
-Requisitos: Python **3.10 o posterior**. Desde la carpeta del proyecto:
+## Funcionalidades implementadas
+
+| Módulo | Función |
+| --- | --- |
+| Ver datos CSV y Excel | Consultar las tablas desde la interfaz |
+| Gráfico de producción | Comparar tendencias de maíz y papa entre dos años seleccionados |
+| Exportaciones y consumo | Comparar producción y exportaciones de arroz en dos regiones |
+| Gráfico de dispersión | Explorar la relación entre área cosechada y producción por región |
+| Gráfico pastel | Mostrar la proporción de producción de una región frente a las demás |
+| Estadísticas | Calcular media, mediana, moda, varianza, desviación estándar, rango intercuartílico, correlación de Pearson y covarianza; ajustar una regresión lineal simple |
+| Exportar datos | Descargar el CSV de producción o el Excel de exportaciones desde el navegador |
+
+## Capturas de la aplicación
+
+### Producción por región y año
+![Producción de maíz y papa](capturas/01-produccion.png)
+
+### Estadísticas descriptivas
+![Estadísticas](capturas/02-estadisticas.png)
+
+### Área cosechada y producción
+![Gráfico de dispersión](capturas/03-dispersion.png)
+
+### Descarga de información
+![Exportación CSV y Excel](capturas/04-exportacion.png)
+
+## Tecnologías
+
+- **Python**: lógica de la aplicación, implementada en la clase `AgriculturaData`.
+- **Streamlit**: interfaz y controles interactivos.
+- **pandas**: lectura y procesamiento de CSV/Excel.
+- **Matplotlib**: gráficos estadísticos.
+- **scikit-learn**: regresión lineal simple (`LinearRegression`).
+- **openpyxl**: lectura y exportación de Excel.
+
+## Instalación y ejecución
+
+Requisitos: **Python 3.10 o superior**, Git opcional para clonar. En Windows, desde la raíz del repositorio:
 
 ```powershell
 py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m streamlit run app.py
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Si PowerShell no permite activar el entorno virtual, se puede usar directamente `.\.venv\Scripts\python.exe -m pip install -r requirements.txt` y `.\.venv\Scripts\python.exe -m streamlit run app.py`.
+Abre la URL indicada por Streamlit (normalmente `http://localhost:8501`). La aplicación utiliza `Tabla1.csv` y `Tabla2.xlsx` ubicados junto a `app.py`. No requiere una base de datos ni credenciales externas.
 
-## Funciones
+## Estructura
 
-- Lectura de `Tabla1.csv` y `Tabla2.xlsx`.
-- Gráficos de líneas, barras, dispersión, sectores e histogramas.
-- Estadísticas descriptivas, correlación y covarianza.
-- Modelo de regresión lineal **exploratorio**; no se ha validado su capacidad predictiva fuera de los datos usados para ajustarlo.
-- Descarga de CSV y Excel mediante el navegador.
+```text
+productistico-pe-analytics/
+├── app.py
+├── Tabla1.csv
+├── Tabla2.xlsx
+├── requirements.txt
+├── .gitignore
+├── capturas/
+│   ├── 01-produccion.png
+│   ├── 02-estadisticas.png
+│   ├── 03-dispersion.png
+│   └── 04-exportacion.png
+└── README.md
+```
 
-## Datos y alcance
+## Limitaciones y mejoras futuras
 
-Los archivos de entrada son los provistos en el trabajo de clase. **La procedencia y la correspondencia con series oficiales del INEI no se han verificado**. No se deben presentar como cifras oficiales ni como un sistema de pronóstico de producción validado. La cadena `MaÍz` se normaliza a `Maiz` en tiempo de ejecución para que los filtros sean coherentes.
+- Verificar el origen de los datos, unidades, períodos y metodología.
+- Añadir evaluación de regresión con partición entrenamiento/prueba y métricas como MAE, RMSE y R² antes de afirmar capacidad predictiva.
+- Validar valores faltantes y facilitar la selección de cultivos y períodos.
+- El análisis se limita a los datos incluidos; no hay actualización automática ni conexión al INEI.
 
-## Posibles mejoras
+## Autoría
 
-Filtrar años con controles más amigables; agregar métricas MAE/RMSE/R² con partición de entrenamiento y prueba; documentar unidades, fuentes y metodología de los datos.
-
-## Créditos
-
-Proyecto grupal desarrollado para Programación Orientada a Objetos en la UPC. Autores originales indicados en el trabajo: Diego Joaquín Díaz Urday, Diego Alberto Aquino Chaccara y Manuel Jesús Chávez Cuba. Confirmar autorización del equipo antes de difundir públicamente.
+Proyecto grupal del curso **Programación Orientada a Objetos**, Universidad Peruana de Ciencias Aplicadas (UPC). Integrantes: **Diego Joaquín Díaz Urday, Diego Alberto Aquino Chaccara y Manuel Jesús Chávez Cuba**.

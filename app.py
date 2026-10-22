@@ -93,6 +93,10 @@ class AgriculturaData:
         region1 = st.sidebar.selectbox("Seleccione la primera región:", regiones)
         region2 = st.sidebar.selectbox("Seleccione la segunda región:", regiones)
 
+        if region1 == region2:
+            st.warning("Selecciona dos regiones diferentes para compararlas.")
+            return
+
         # FILTRA LAS REGIONES SELECCIONADAS
         df_region1 = df_filtrado_arroz[df_filtrado_arroz['Region'] == region1]
         df_region2 = df_filtrado_arroz[df_filtrado_arroz['Region'] == region2]
